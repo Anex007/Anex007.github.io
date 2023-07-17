@@ -103,7 +103,7 @@
       "inLanguage": "en",
       "datePublished": "2023-07-11",
       "dateModified": "2023-07-11",
-      "wordCount" : "9",
+      "wordCount" : "789",
       "publisher": {
         "@type": "Person",
         "name": "Anex Johnson"
@@ -132,12 +132,12 @@
   
 
   
-    <meta name="theme-color" content="#1dbc91" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#c063bd" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#1f676b" media="(prefers-color-scheme: light)">
   
 
   
-  <link rel="stylesheet" href="http://example.org/css/noscript.min.3f3b95436b19eaeb9223fb12c0b86737d53ee0a47fdba271a886c244bc03975c.css" integrity="sha256-PzuVQ2sZ6uuSI/sSwLhnN9U&#43;4KR/26JxqIbCRLwDl1w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://example.org/css/noscript.min.5666e4040412848d556faba4313527e2ec857d5f0941c44066870df75a4df251.css" integrity="sha256-VmbkBAQShI1Vb6ukMTUn4uyFfV8JQcRAZocN91pN8lE=" crossorigin="anonymous">
 
 </noscript>
 
@@ -150,6 +150,16 @@
 
 
 
+  
+
+
+
+<link rel="preload" href="/libs/katex@0.16.4/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="/libs/katex@0.16.4/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="/libs/katex@0.16.4/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="/libs/katex@0.16.4/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+
 
 
 
@@ -164,7 +174,7 @@
   
 
 
-<script src="http://example.org/js/main.f1da21dfea83dc0c36cea0b202c14a97e00aedab567e32702eb120f5ab8d974b.js" integrity="sha256-8doh3&#43;qD3Aw2zqCyAsFKl&#43;AK7atWfjJwLrEg9auNl0s=" crossorigin="anonymous"></script>
+<script src="http://example.org/js/main.8e16bce39af48f4fff8bcfc82d13897055fa66b943dfa5add9c036b98b032b34.js" integrity="sha256-jha845r0j0//i8/ILROJcFX6ZrlD36Wt2cA2uYsDKzQ=" crossorigin="anonymous"></script>
 
   </head>
 
@@ -177,6 +187,26 @@
 
 
 
+
+  
+    <nav aria-label="Main menu.">
+      <ul>
+        
+          <li>
+            <a class="btn" href="/">About</a>
+          </li>
+        
+          <li>
+            <a class="btn" href="/posts/">Posts</a>
+          </li>
+        
+          <li>
+            <a class="btn" href="/contact/">Contact</a>
+          </li>
+        
+      </ul>
+    </nav>
+  
 
 
     </header>
@@ -256,7 +286,207 @@
 
 
 
-<p>This Years Crypto CTF was very exciting, out team</p>
+<p>This Year&rsquo;s Crypto CTF was very exciting, I got just enough time to solve 2 challenges and 2 challenges partially.
+Congrats for the teams that solved all the challenges. This was my first real time CTF attempt on a specific
+category.</p>
+
+
+
+
+
+
+
+
+
+  <h2 id="suction-easy"><a class="anchor" href="#suction-easy" title='Anchor for: Suction (Easy).'><svg aria-hidden="true"><use xlink:href="/img/bundle.min.ae45e7a9a0a65150dd900a58f35fe84d.svg#hashtag"/></svg></a> Suction (Easy)</h2> 
+
+<p>The following source code and the corresponding output is given to us</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env python3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flag <span style="color:#f92672">import</span> flag
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">keygen</span>(nbit, r):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>		p, q <span style="color:#f92672">=</span> [getPrime(nbit) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;__&#39;</span>]
+</span></span><span style="display:flex;"><span>		e, n <span style="color:#f92672">=</span> getPrime(<span style="color:#ae81ff">16</span>), p <span style="color:#f92672">*</span> q
+</span></span><span style="display:flex;"><span>		phi <span style="color:#f92672">=</span> (p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> (q <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> GCD(e, phi) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>			N <span style="color:#f92672">=</span> bin(n)[<span style="color:#ae81ff">2</span>:<span style="color:#f92672">-</span>r]
+</span></span><span style="display:flex;"><span>			E <span style="color:#f92672">=</span> bin(e)[<span style="color:#ae81ff">2</span>:<span style="color:#f92672">-</span>r]
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># print(-r)</span>
+</span></span><span style="display:flex;"><span>			PKEY <span style="color:#f92672">=</span> N <span style="color:#f92672">+</span> E
+</span></span><span style="display:flex;"><span>			pkey <span style="color:#f92672">=</span> (n, e)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> PKEY, pkey
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">encrypt</span>(msg, pkey, r):
+</span></span><span style="display:flex;"><span>	m <span style="color:#f92672">=</span> bytes_to_long(msg)
+</span></span><span style="display:flex;"><span>	n, e <span style="color:#f92672">=</span> pkey
+</span></span><span style="display:flex;"><span>	c <span style="color:#f92672">=</span> pow(m, e, n)
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#39;c:&#39;</span>, c)
+</span></span><span style="display:flex;"><span>	C <span style="color:#f92672">=</span> bin(c)[<span style="color:#ae81ff">2</span>:<span style="color:#f92672">-</span>r]
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> C
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>r, nbit <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">128</span>
+</span></span><span style="display:flex;"><span>PKEY, pkey <span style="color:#f92672">=</span> keygen(nbit, r)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;PKEY = </span><span style="color:#e6db74">{</span>int(PKEY, <span style="color:#ae81ff">2</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>FLAG <span style="color:#f92672">=</span> flag<span style="color:#f92672">.</span>lstrip(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;CCTF{&#39;</span>)<span style="color:#f92672">.</span>rstrip(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;}&#39;</span>)
+</span></span><span style="display:flex;"><span>enc <span style="color:#f92672">=</span> encrypt(FLAG, pkey, r)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;enc = </span><span style="color:#e6db74">{</span>int(enc, <span style="color:#ae81ff">2</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>PKEY = 55208723145458976481271800608918815438075571763947979755496510859604544396672
+</span></span><span style="display:flex;"><span>ENC = 127194641882350916936065994389482700479720132804140137082316257506737630761
+</span></span></code></pre></div><p>It picks two random 128 bit primes and forms our modulus then raises it to the power e, a prime of bit length 16.
+Usually 128 bit primes are relatively small and can be mostly factored with something like <a href="http://factordb.com/">factordb</a>.
+The hard part in this challenge is to find the actual N, E and C values used as the output truncates the last
+byte from each of the integers. This however is not a major issue and for the most part we can quickly
+find the actual values used. You can seperate PKEY and ENC into its components with</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python3" data-lang="python3"><span style="display:flex;"><span>N_E <span style="color:#f92672">=</span> bin(PKEY)[<span style="color:#ae81ff">2</span>:]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>_C <span style="color:#f92672">=</span> bin(ENC)[<span style="color:#ae81ff">2</span>:]
+</span></span><span style="display:flex;"><span>_E <span style="color:#f92672">=</span> N_E[<span style="color:#f92672">-</span><span style="color:#ae81ff">8</span>:]
+</span></span><span style="display:flex;"><span>_N <span style="color:#f92672">=</span> N_E[:<span style="color:#f92672">-</span><span style="color:#ae81ff">8</span>]
+</span></span></code></pre></div><p>Then we can brute force and append all possible 3*256 values into a list to further narrow down.
+Firstly for N, we can check the first 2^20 or so numbers for common divisor with each of the possible N since
+we know both factors have a bit length of 128, this narrows it down to just nine N values, we can manually input
+each of the possible ones into <strong>factordb</strong> and just find an N with two 128 bit primes.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>p = 188473222069998143349386719941755726311
+</span></span><span style="display:flex;"><span>q = 292926085409388790329114797826820624883
+</span></span></code></pre></div><p>We can calculate $\phi$ value from these two factors, now all that&rsquo;s left is to find our E to inverse.
+After brute forcing for E, we can further narrow it down by checking if it is a 16 bit prime. Then
+find $d$ such that $$de = 1 \mod \phi$$
+Now we can simply brute force each of the possible 256 ciphertext values by
+$$ c^d \mod n$$
+We can write a simple ASCII checker to filter any non ASCII bytes after converting from an integer to bytes.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>FLAG: CCTF{6oRYGy&amp;Dc$G2ZS}
+</span></span></code></pre></div>
+
+
+
+
+
+
+
+
+  <h2 id="resuction-medium"><a class="anchor" href="#resuction-medium" title='Anchor for: Resuction (Medium).'><svg aria-hidden="true"><use xlink:href="/img/bundle.min.ae45e7a9a0a65150dd900a58f35fe84d.svg#hashtag"/></svg></a> Resuction (Medium)</h2> 
+
+<p>We are given the following source code and the corresponding output</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env python3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flag <span style="color:#f92672">import</span> flag
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> decimal <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">keygen</span>(nbit, r):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>		p, q <span style="color:#f92672">=</span> [getPrime(nbit) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;__&#39;</span>]
+</span></span><span style="display:flex;"><span>		d, n <span style="color:#f92672">=</span> getPrime(<span style="color:#ae81ff">64</span>), p <span style="color:#f92672">*</span> q
+</span></span><span style="display:flex;"><span>		phi <span style="color:#f92672">=</span> (p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> (q <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> GCD(d, phi) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>			e <span style="color:#f92672">=</span> inverse(d, phi)
+</span></span><span style="display:flex;"><span>			N <span style="color:#f92672">=</span> bin(n)[<span style="color:#ae81ff">2</span>:<span style="color:#f92672">-</span>r]
+</span></span><span style="display:flex;"><span>			E <span style="color:#f92672">=</span> bin(e)[<span style="color:#ae81ff">2</span>:<span style="color:#f92672">-</span>r]
+</span></span><span style="display:flex;"><span>			PKEY <span style="color:#f92672">=</span> N <span style="color:#f92672">+</span> E
+</span></span><span style="display:flex;"><span>			pkey <span style="color:#f92672">=</span> (n, e)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> PKEY, pkey
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">encrypt</span>(msg, pkey, r):
+</span></span><span style="display:flex;"><span>	m <span style="color:#f92672">=</span> bytes_to_long(msg)
+</span></span><span style="display:flex;"><span>	n, e <span style="color:#f92672">=</span> pkey
+</span></span><span style="display:flex;"><span>	c <span style="color:#f92672">=</span> pow(m, e, n)
+</span></span><span style="display:flex;"><span>	C <span style="color:#f92672">=</span> bin(c)[<span style="color:#ae81ff">2</span>:<span style="color:#f92672">-</span>r]
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> C
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>r, nbit <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1024</span>
+</span></span><span style="display:flex;"><span>PKEY, pkey <span style="color:#f92672">=</span> keygen(nbit, r)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;PKEY = </span><span style="color:#e6db74">{</span>int(PKEY, <span style="color:#ae81ff">2</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>FLAG <span style="color:#f92672">=</span> flag<span style="color:#f92672">.</span>lstrip(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;CCTF{&#39;</span>)<span style="color:#f92672">.</span>rstrip(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;}&#39;</span>)
+</span></span><span style="display:flex;"><span>enc <span style="color:#f92672">=</span> encrypt(FLAG, pkey, r)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;enc = </span><span style="color:#e6db74">{</span>int(enc, <span style="color:#ae81ff">2</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>PKEY = 14192646310719975031517528381795548241077678859071194396837281472399230674325587198691913743313024193030641258581477544395982020385534616950314446352119543012689979705497443206671093873748633162188213109347667494028713308821945628880987033909436936504594085029207071182583896573425433818693447573712242776054326253393149643818428222532313129014785625379928796322492111783102063504659053965652092334907431265629283336869752591405010801363428649651892548988084920295512198406822149854508798413366425646089176325412867633899847841343293434518769693835679828109184625256833518392375615524221729773443578746961887429674099018040291053535429314874943299587513900900515776980848746070077651676814430155460898107362207677739452859298842563030631706907437662807884529549746843462830493900480079096937402325307522965877069080418178692616875205678928420840955518031258855869218152431304423803589723140983606576549207164114711076498723237274262054605174412193097533550076687418481230734706280737017543741247718967059747548710091320650704988384742281590019869955579949961574733610565593105027342454880292474482792325237942870408329807427182014062811782475262070063065860763705715879581562335668163076088547827008755841277828137570366416095778
+</span></span><span style="display:flex;"><span>enc = 93313196155732054514477836642637636744872135106456047659057794344503071105783322399713135615723000054324693644981340568454628360027598469597864407205974007198804288563284521413279406211756674451582156555173212403946908121125010635246043311803494356106191509999360722019559999844621905376368824621365540442906142224342650371557766313381899279520110833822291649001754956653102495882094754863493058001964760438040783400782352466943990226083197340594364084294954324101604417550048379969516185353765224920719355485680872367930581872987972421836853197205534334204586713387469939986387582911728909524428102693874671302382
+</span></span></code></pre></div><p>This may look almost identical to the Suction challenge, however we are working with 1024 bit primes
+which are quite hard to factorize like before. The other major difference is that we are choosing a 64 bit prime for
+$d$ then finding it&rsquo;s inverse to encrypt. There are two major attacks against choosing a small $d$
+<a href="https://en.wikipedia.org/wiki/Wiener%27s_attack">Wiener&rsquo;s attack</a> and <a href="https://cryptohack.gitbook.io/cryptobook/untitled/low-private-component-attacks/boneh-durfee-attack">Boneh-Durfee</a>
+Although Boneh-Durfee is an extension of Wiener&rsquo;s attack, Wiener&rsquo;s attack is more simple to implement
+and our $d$ easily satisfies its requirement.
+The only other difficulty is brute forcing $N$ and $E$ and $C$, like before since we know the factors or $N$ has
+1024 digits we can do a naive check for divisibility with small numbers to narrow down $N$, I was able to narrow it down
+to just 6 possible ones, then from there running over all possible $E$ and parallelizing our attack we can
+factor $N$.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>p = 165057747190263284822060070867326404037226426769214461653453077347642660157038079939800175423376926190278742477747265143003662594094338527240051087411682630746699434893569121815945138770655880775127567084882226276395011876712312835431878615781804989285062397026979540636501309686456639319755442794081237335613
+</span></span><span style="display:flex;"><span>q = 174371810769321904879771281457264126835536885769795883249689917534917724369418768788724295833034211032483643000304760729751539874477879712047563093622220226046317887445404441674034749799537927102249473198079484568936482286828850749395726000380023524546597995716458255074061858150920326214596269436009922505467
+</span></span></code></pre></div><p>Now as before after finding $d$ we can brute force $c$ by checking if any of them is ASCII after decryption.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>FLAG: CCTF{aIr_pr3s5urE_d!Ff3rEn7i4L_8eTw3eN_ArEa5!}
+</span></span></code></pre></div>
+
+
+
+
+
+
+
+
+  <h1 id="note">NOTE</h1> 
+
+<p><em><strong>There are more write-ups of this CTF competition that will be updated soon.</strong></em></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 
 
 
@@ -289,7 +519,7 @@
 
 
 <div class="req-js">
-  <button class="outline-dashed" title="Change to light/dark mode."><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use xlink:href="/img/bundle.min.ae45e7a9a0a65150dd900a58f35fe84d.svg#adjust"/></svg></button><input class="outline-dashed" type="color" list="presets" value="#1dbc91" title="Change accent color." aria-label="Change accent color."><datalist id="presets"><option value="#1f676b"><option value="#1dbc91"><option value="#f3a530"><option value="#902b37"><option value="#754e85"><option value="#7fc121"><option value="#a8314a"><option value="#ff7433"><option value="#3e6728"><option value="#c063bd"></datalist>
+  <button class="outline-dashed" title="Change to light/dark mode."><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use xlink:href="/img/bundle.min.ae45e7a9a0a65150dd900a58f35fe84d.svg#adjust"/></svg></button><input class="outline-dashed" type="color" list="presets" value="#c063bd" title="Change accent color." aria-label="Change accent color."><datalist id="presets"><option value="#1f676b"><option value="#c063bd"><option value="#f3a530"><option value="#902b37"><option value="#1dbc91"><option value="#754e85"><option value="#7fc121"><option value="#a8314a"><option value="#ff7433"><option value="#3e6728"></datalist>
 </div>
 
 
@@ -302,6 +532,33 @@
     
 
     
+    
+      
+
+
+
+<link rel="stylesheet" href="http://example.org/libs/katex@0.16.4/dist/katex.min.16bacd59fb224ae6c97a749ab0ac1e708cb5e0c9ce5c9a08d7fd73dc8e69429f.css" integrity="sha256-FrrNWfsiSubJenSasKwecIy14MnOXJoI1/1z3I5pQp8=" crossorigin="anonymous">
+
+
+<script defer src="http://example.org/libs/katex@0.16.4/dist/katex.min.3cc3a080c0368785179e37b0cd0a71c6cf60c4fc5a8dce503f5a542ec0a25043.js" integrity="sha256-PMOggMA2h4UXnjewzQpxxs9gxPxajc5QP1pULsCiUEM=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script defer src="http://example.org/js/katex-custom-render.min.e250f1d4a4f9f365796f61e357dd0c859146b72cac455431060b5244c4932f5c.js" integrity="sha256-4lDx1KT582V5b2HjV90MhZFGtyysRVQxBgtSRMSTL1w=" crossorigin="anonymous"></script>
+
     
 
   </body>

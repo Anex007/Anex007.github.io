@@ -13,7 +13,9 @@
         <pubDate>Tue, 11 Jul 2023 01:35:43 -0400</pubDate>
         
         <guid>http://example.org/posts/cryptoctf2023/</guid>
-        <description>This Years Crypto CTF was very exciting, out team</description>
+        <description>This Year&amp;rsquo;s Crypto CTF was very exciting, I got just enough time to solve 2 challenges and 2 challenges partially. Congrats for the teams that solved all the challenges. This was my first real time CTF attempt on a specific category.
+Suction (Easy) The following source code and the corresponding output is given to us
+#!/usr/bin/env python3 from Crypto.Util.number import * from flag import flag def keygen(nbit, r): while True: p, q = [getPrime(nbit) for _ in &amp;#39;__&amp;#39;] e, n = getPrime(16), p * q phi = (p - 1) * (q - 1) if GCD(e, phi) == 1: N = bin(n)[2:-r] E = bin(e)[2:-r] # print(-r) PKEY = N + E pkey = (n, e) return PKEY, pkey def encrypt(msg, pkey, r): m = bytes_to_long(msg) n, e = pkey c = pow(m, e, n) print(&amp;#39;c:&amp;#39;, c) C = bin(c)[2:-r] return C r, nbit = 8, 128 PKEY, pkey = keygen(nbit, r) print(f&amp;#39;PKEY = {int(PKEY, 2)}&amp;#39;) FLAG = flag.</description>
       </item>
     
   </channel>
