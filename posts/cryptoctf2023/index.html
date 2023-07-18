@@ -411,7 +411,7 @@ $d$ then finding it&rsquo;s inverse to encrypt. There are two major attacks agai
 <a href="https://en.wikipedia.org/wiki/Wiener%27s_attack">Wiener&rsquo;s attack</a> and <a href="https://cryptohack.gitbook.io/cryptobook/untitled/low-private-component-attacks/boneh-durfee-attack">Boneh-Durfee</a>
 Although Boneh-Durfee is an extension of Wiener&rsquo;s attack, Wiener&rsquo;s attack is more simple to implement
 and our $d$ easily satisfies its requirement.
-The only other difficulty is brute forcing $N$ and $E$ and $C$, like before since we know the factors or $N$ has
+The only other difficulty is brute forcing $N$ and $E$ and $C$, like before since we know the factors of $N$ has
 1024 digits we can do a naive check for divisibility with small numbers to narrow down $N$, I was able to narrow it down
 to just 6 possible ones, then from there running over all possible $E$ and parallelizing our attack we can
 factor $N$.</p>
@@ -499,8 +499,8 @@ get the <code>n</code> variable imported from the secret by reading the image si
 </span></span><span style="display:flex;"><span>img<span style="color:#f92672">.</span>save(<span style="color:#e6db74">&#39;enc.png&#39;</span>)
 </span></span></code></pre></div><p>Because <code>n</code> is fixed
 we can figure out what the parameter <code>d</code> does to the function, because there are only $2^{16}$ elements we can form a lookup
-table corresponding to the <code>d</code>, I also serialized the list for significally faster lookups and remove the 20 seconds entirely, if we convert the 2d $(x, y)$ to 1d array coordinate
-we can see that it is just some permutation of $ { 0, 1, &hellip;, 65535 } $, we can easily make an inverse lookup table and
+table corresponding to the <code>d</code>, I also serialized the list for significantly faster lookups and removed the 20 seconds of processing entirely, if we convert the 2d $(x, y)$ to 1d array coordinate
+we can see that it is just some permutation of $ {0, 1, &hellip;, 65535} $, we can easily make an inverse lookup table and
 treat the <code>sox</code> function as a black box which does some invertible operation.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python3" data-lang="python3"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> d <span style="color:#f92672">in</span> range(n<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>):
 </span></span><span style="display:flex;"><span>    x, y <span style="color:#f92672">=</span> sox(n, d)
@@ -534,7 +534,7 @@ by flattening the 2d list to a 1d list, then after getting rid of the empty valu
 value of key (unsorted) to our message. It does these operations in a loop, length of key times updating our <code>_msg</code> list each time.</p>
 <p>The key idea is to realize that mixing the 2d array simply based on a key length of 3 leaves only 6 possible choices for
 the mixing operation. I wrote a simple function to track the position the loop will end up on given a starting position
-and array indicies. I also added in feature so that the function will return the key index that gets added with message on each iteration</p>
+and array indices. I also added in feature so that the function will return the key index that gets added with message on each iteration</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python3" data-lang="python3"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">track_scrambling</span>(conf, _msg):
 </span></span><span style="display:flex;"><span>    idxs <span style="color:#f92672">=</span> []
 </span></span><span style="display:flex;"><span>    w <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
@@ -610,7 +610,7 @@ we can print any number of characters from the encrypted message</p>
 </span></span><span style="display:flex;"><span>        flag <span style="color:#f92672">+=</span> bytes([m])
 </span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;[+] Found flag: </span><span style="color:#e6db74">{</span>flag<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>
-</span></span></code></pre></div><p>Because I wrote this in sagemath I had to <code>lift</code> the number from $\mod 4$ to the intergers, otherwise it creates a very
+</span></span></code></pre></div><p>Because I wrote this in sagemath I had to <code>lift</code> the number from $\mod 4$ to the integers, otherwise it creates a very
 subtle and hard to find bug.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>FLAG: CCTF{3nCrypTioN_8Y_c0lUmn4R_7rAnSp05it!On!}
 </span></span></code></pre></div>
